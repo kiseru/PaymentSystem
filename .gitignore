@@ -25,12 +25,12 @@ hs_err_pid*
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
+/angular/dist
 /tmp
 /out-tsc
 
 # dependencies
-/node_modules
+/angular/node_modules
 
 # IDEs and editors
 /.idea
@@ -57,6 +57,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+yarn.lock
 
 # System Files
 .DS_Store
