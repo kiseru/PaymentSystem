@@ -1,0 +1,40 @@
+<div class="d-flex align-items-center p-3 my-3 text-center bg-dark rounded w-50 mx-auto">
+  <h6 class="text-light m-auto">New Payment</h6>
+</div>
+
+<div class="my-3 p-3 bg-white rouded box-shadow w-50 mx-auto">
+  <div class="form-group">
+    <label for="customer-input">Customer</label>
+    <select id="customer-input" class="form-control" [(ngModel)]="newPayment.customerId">
+      <option value="0" selected>Choose...</option>
+      <option value="1">Some Cool Customer</option>
+    </select>
+    <div class="alert alert-danger mt-2" *ngIf="!isCustomerValid">Choose something</div>        
+  </div>
+  <div class="form-group">
+    <label for="biller-input">Biller</label>
+    <select id="biller-input" class="form-control" [(ngModel)]="newPayment.billerId">
+      <option value="0" selected>Choose...</option>      
+      <option value="1">Another Nice Biller</option>
+    </select>
+    <div class="alert alert-danger mt-2" *ngIf="!isBillerValid">Choose something</div>        
+  </div>
+  <div class="form-group">
+    <label for="account-input">Account</label>
+    <input type="text" id="account-input" class="form-control" [(ngModel)]="newPayment.account">
+    <div class="alert alert-danger mt-2" *ngIf="!isAccountValid">Must not be blank</div>    
+  </div>
+  <div class="form-group">
+    <label for="amount-input">Amount</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">$</div>
+      </div>
+      <input type="number" id="amount-input" class="form-control" [(ngModel)]="newPayment.amount">
+    </div>
+    <div class="alert alert-danger mt-2" *ngIf="!isAmountValid">Must not be blank and be grater than 0</div>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-dark text-center w-50" (click)="createPayment()">Pay</button>
+  </div>
+</div>
