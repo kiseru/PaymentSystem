@@ -10,6 +10,7 @@ import { PaymentNewComponent } from './payment-new/payment-new.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerNewComponent } from './customer-new/customer-new.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { BillersComponent } from './billers/billers.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
     PaymentNewComponent,
     CustomersComponent,
     CustomerNewComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    BillersComponent
   ],
   imports: [
     BrowserModule,
