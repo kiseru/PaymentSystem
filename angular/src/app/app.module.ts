@@ -9,6 +9,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { PaymentNewComponent } from './payment-new/payment-new.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerNewComponent } from './customer-new/customer-new.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CustomerNewComponent } from './customer-new/customer-new.component';
     PaymentsComponent,
     PaymentNewComponent,
     CustomersComponent,
-    CustomerNewComponent
+    CustomerNewComponent,
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,
