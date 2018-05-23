@@ -2,6 +2,6 @@ export class Customer {
     id: number;
     firstName: string;
     lastName: string;
-    dateOfbirth: string;
+    dateOfBirth: string;
     address: string;
 }

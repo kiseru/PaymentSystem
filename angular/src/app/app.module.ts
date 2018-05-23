@@ -7,13 +7,15 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { PaymentNewComponent } from './payment-new/payment-new.component';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PaymentsComponent,
-    PaymentNewComponent
+    PaymentNewComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,

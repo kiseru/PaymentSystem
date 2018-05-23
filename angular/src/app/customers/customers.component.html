@@ -1,0 +1,49 @@
+<div class="d-flex align-items-center p-3 my-3 text-center bg-dark rounded">
+  <h6 class="text-light m-auto">Customers</h6>
+</div>
+
+<div class="my-3 p-3 bg-white rouded box-shadow">
+  <div class="border-bottom border-gray pb-2 mb-0 d-flex justify-content-between">
+    <div class="d-flex">
+      <div class="form-group">
+        <label for="search-input" class="sr-only">Search</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Search</div>
+          </div>
+          <input type="text" id="search-input" class="form-control" [(ngModel)]="searchString" placeholder="Search" (keyup)="onChangeSearchString()">
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="/customers/new" class="btn btn-dark text-light">New Customer</a>
+    </div>
+  </div>
+  <table class="table mt-4 text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Address</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.firstName }}</td>
+        <td>{{ customer.lastName }}</td>
+        <td>{{ customer.dateOfBirth }}</td>
+        <td>{{ customer.address }}</td>
+        <td>
+          <a href="/customer/{{ customer.id }}/edit" class="material-icons bg-primary border-0 rounded text-light p-1 mx-1">
+            edit
+          </a>
+          <button class="material-icons bg-danger border-0 rounded text-light p-1 mx-1" (click)="delete(customer)">
+            delete_forever
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
