@@ -12,6 +12,7 @@ import { CustomerNewComponent } from './customer-new/customer-new.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { BillersComponent } from './billers/billers.component';
 import { BillerNewComponent } from './biller-new/biller-new.component';
+import { BillerEditComponent } from './biller-edit/biller-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BillerNewComponent } from './biller-new/biller-new.component';
     CustomerNewComponent,
     CustomerEditComponent,
     BillersComponent,
-    BillerNewComponent
+    BillerNewComponent,
+    BillerEditComponent
   ],
   imports: [
     BrowserModule,
