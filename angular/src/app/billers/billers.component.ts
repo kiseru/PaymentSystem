@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Biller } from '../biller';
+import { BillersService } from '../billers.service';
 
 @Component({
   selector: 'app-billers',
@@ -12,18 +13,15 @@ export class BillersComponent implements OnInit {
 
   billers: Biller[];
 
-  constructor() { }
+  constructor(private billersService: BillersService) { }
 
   ngOnInit() {
-    this.billers = [
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" },
-      { id: 1, companyName: "Some cool company" }
-    ]
+    this.getAllBillers();
+  }
+
+  getAllBillers() {
+    this.billersService.findAll()
+      .subscribe(billers => this.billers = billers);
   }
 
   onChangeSearchString() {
@@ -31,6 +29,7 @@ export class BillersComponent implements OnInit {
   }
 
   delete(id: number) {
+    
   }
 
 }

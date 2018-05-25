@@ -13,6 +13,7 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { BillersComponent } from './billers/billers.component';
 import { BillerNewComponent } from './biller-new/biller-new.component';
 import { BillerEditComponent } from './biller-edit/biller-edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BillerEditComponent } from './biller-edit/biller-edit.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

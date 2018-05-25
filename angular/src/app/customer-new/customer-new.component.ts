@@ -60,4 +60,8 @@ export class CustomerNewComponent implements OnInit {
     this.isAddressValid = this.customerForm.address != "";
   }
 
+  createCustomer() {
+    console.log(this.customerForm);
+  }
+
 }

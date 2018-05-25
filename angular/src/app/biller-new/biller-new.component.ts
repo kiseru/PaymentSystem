@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Biller } from '../biller';
+import { BillersService } from '../billers.service';
+import { BillerForm } from '../biller-form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-biller-new',
@@ -8,16 +10,17 @@ import { Biller } from '../biller';
 })
 export class BillerNewComponent implements OnInit {
 
-  @Input() newBiller: Biller; 
+  @Input() billerForm: BillerForm; 
 
-  constructor() { }
+  constructor(private billersService: BillersService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.newBiller = new Biller();
+    this.billerForm = new BillerForm();
   }
 
   createBiller() {
-    console.log(this.newBiller);
+    this.billersService.create(this.billerForm)
+      .subscribe(() => this.router.navigate(["/billers"]));
   }
-
 }

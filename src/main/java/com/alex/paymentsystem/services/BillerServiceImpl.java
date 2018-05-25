@@ -2,6 +2,7 @@ package com.alex.paymentsystem.services;
 
 import java.util.List;
 
+import com.alex.paymentsystem.forms.BillerForm;
 import com.alex.paymentsystem.models.Biller;
 import com.alex.paymentsystem.repositories.BillerRepository;
 
@@ -19,4 +20,9 @@ public class BillerServiceImpl implements BillerService {
 		return billerRepository.findAll();
 	}
 
+	@Override
+	public Biller save(BillerForm billerForm) {
+		Biller biller = BillerForm.from(billerForm);
+		return billerRepository.save(biller);
+	}
 }
