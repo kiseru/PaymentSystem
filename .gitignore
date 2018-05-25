@@ -62,3 +62,8 @@ yarn.lock
 # System Files
 .DS_Store
 Thumbs.db
+.vscode
+.factorypath
+paymentsystem.trace.db
+src/main/resources/static
+target
