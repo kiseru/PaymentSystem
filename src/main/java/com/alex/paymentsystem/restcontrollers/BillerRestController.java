@@ -10,11 +10,7 @@ import com.alex.paymentsystem.services.BillerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/billers")
@@ -30,8 +26,18 @@ public class BillerRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createBiller(@RequestBody BillerForm billerForm) throws URISyntaxException {
+    public void createBiller(@RequestBody BillerForm billerForm) {
         billerService.save(billerForm);
-        return ResponseEntity.created(new URI("/billers")).build();
+    }
+
+    @PutMapping("/{id}")
+    public void updateBiller(@RequestBody Biller biller, @PathVariable("id") Long id) {
+        billerService.update(biller);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Biller> biller(@PathVariable("id") Long id) {
+        Biller biller = billerService.findOneById(id);
+        return ResponseEntity.ok(biller);
     }
 }

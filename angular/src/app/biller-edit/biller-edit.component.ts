@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Biller } from '../biller';
+import { BillersService } from '../billers.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-biller-edit',
@@ -10,14 +13,22 @@ export class BillerEditComponent implements OnInit {
 
   @Input() biller: Biller;
 
-  constructor() { }
+  constructor(private billersService: BillersService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.biller = { id: 1, companyName: "Some Cool Company" }
+    this.findOne();
   }
 
   update() {
-    console.log(this.biller);
+    this.billersService.update(this.biller)
+      .subscribe(() => this.router.navigate(["/billers"]));
   }
 
+  findOne() {
+    let id = +this.activatedRoute.snapshot.paramMap.get("id");
+    this.billersService.findOne(id)
+      .subscribe(biller => this.biller = biller);
+  }
 }

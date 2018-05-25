@@ -21,8 +21,19 @@ public class BillerServiceImpl implements BillerService {
 	}
 
 	@Override
+	public Biller findOneById(Long id) {
+		return billerRepository.findById(id)
+			.orElseThrow(IllegalArgumentException::new);
+	}
+
+	@Override
 	public Biller save(BillerForm billerForm) {
 		Biller biller = BillerForm.from(billerForm);
+		return billerRepository.save(biller);
+	}
+
+	@Override
+	public Biller update(Biller biller) {
 		return billerRepository.save(biller);
 	}
 }
