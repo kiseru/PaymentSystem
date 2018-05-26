@@ -13,10 +13,8 @@ export class CustomerNewComponent implements OnInit {
 
   isFirstNameValid: boolean;
   isLastNameValid: boolean;
-  isDayOfBirthValid: boolean;
-  isMonthOfBirthValid: boolean;
-  isYearOfBirthValid: boolean;
   isAddressValid: boolean;
+  isDateOfBirthValid: boolean;
 
   constructor() { }
 
@@ -24,15 +22,13 @@ export class CustomerNewComponent implements OnInit {
     this.customerForm = new CustomerForm();
     this.isFirstNameValid = true;
     this.isLastNameValid = true;
-    this.isDayOfBirthValid = true;
-    this.isMonthOfBirthValid = true;
-    this.isYearOfBirthValid = true;
+    this.isDateOfBirthValid = true;
   }
 
   private validate() {
     this.validateFirstName();
     this.validateLastName();
-    this.validateDayOfBirth();
+    this.validateDateOfBirth();
     this.validateAddress();
   }
 
@@ -44,16 +40,8 @@ export class CustomerNewComponent implements OnInit {
     this.isLastNameValid = this.customerForm.lastName !== "";
   }
 
-  private validateDayOfBirth() {
-    this.isDayOfBirthValid = this.customerForm.dayOfBirth > 0;
-  }
-
-  private validateMonthOfBirth() {
-    this.isMonthOfBirthValid = true;
-  }
-
-  private validateYearOfBirth() {
-    this.isYearOfBirthValid = this.customerForm.yearOfBirth > 1900;
+  private validateDateOfBirth() {
+    this.isDateOfBirthValid = this.customerForm.dateOfBirth !== "";
   }
 
   private validateAddress() {

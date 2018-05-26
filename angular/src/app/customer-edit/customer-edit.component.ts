@@ -21,9 +21,7 @@ export class CustomerEditComponent implements OnInit {
       firstName: "Sherlok", 
       lastName: "Holms", 
       address: "Baker St 221B",
-      dayOfBirth: 23,
-      monthOfBirth: 6,
-      yearOfBirth: 1973
+      dateOfBirth: "1973-6-23"
     };
   }
 

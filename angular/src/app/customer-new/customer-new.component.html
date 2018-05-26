@@ -15,34 +15,10 @@
     <label for="address-input">Address</label>
     <input type="text" id="address-input" class="form-control" [(ngModel)]="customerForm.address">
   </div>
-  <p class="mb-2">Date of birth</p>
-  <div class="form-row">
-    <div class="col-sm-3">
-      <label for="birth-day-input" class="sr-only">Birth day</label>
-      <input type="text" class="form-control" id="birth-day-input" placeholder="Day" [(ngModel)]="customerForm.dayOfBirth">
-    </div>
-    <div class="col-sm-5">
-      <label for="birth-month-input" class="sr-only">Month day</label>
-      <select class="form-control" id="birth-month-input">
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">Jule</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-      </select>
-    </div>
-    <div class="col-sm-4">
-      <label for="birth-year-input" class="sr-only">Year day</label>
-      <input class="form-control" id="birth-year-input" placeholder="Year" [(ngModel)]="customerForm.yearOfBirth">  
-    </div>
-  </div>
+  <div class="form-group">
+    <label for="date-of-birth-input">Date of Birth</label>
+    <input type="text" id="date-of-birth-input" class="form-control" [(ngModel)]="customerForm.dateOfBirth">
+  </div>  
 
   <div class="text-center mt-4">
     <button class="btn btn-dark text-center w-50" (click)="createCustomer()">Create</button>
