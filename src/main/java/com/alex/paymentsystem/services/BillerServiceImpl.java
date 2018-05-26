@@ -21,7 +21,7 @@ public class BillerServiceImpl implements BillerService {
 	}
 
 	@Override
-	public Biller findOneById(Long id) {
+	public Biller findById(Long id) {
 		return billerRepository.findById(id)
 			.orElseThrow(IllegalArgumentException::new);
 	}

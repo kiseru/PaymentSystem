@@ -37,7 +37,7 @@ public class BillerRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Biller> biller(@PathVariable("id") Long id) {
-        Biller biller = billerService.findOneById(id);
+        Biller biller = billerService.findById(id);
         return ResponseEntity.ok(biller);
     }
 
