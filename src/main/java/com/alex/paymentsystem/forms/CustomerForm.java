@@ -23,10 +23,6 @@ public class CustomerForm {
 
     private String dateOfBirth;
 
-    public CustomerForm(Customer customer) {
-        this(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getDateOfBirth().toString());
-    }
-
     public static Customer from(CustomerForm customerForm) {
         return Customer.builder()
             .id(customerForm.getId())

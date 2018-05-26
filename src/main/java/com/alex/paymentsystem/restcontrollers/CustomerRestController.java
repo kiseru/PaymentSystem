@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.alex.paymentsystem.forms.CustomerForm;
 import com.alex.paymentsystem.services.CustomerService;
+import com.alex.paymentsystem.transfer.CustomerDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,16 +26,16 @@ public class CustomerRestController {
     private CustomerService customerService;
 
     @GetMapping
-    public ResponseEntity<List<CustomerForm>> customers() {
-        List<CustomerForm> customers = customerService.findAll().stream()
-            .map(CustomerForm::new)
+    public ResponseEntity<List<CustomerDto>> customers() {
+        List<CustomerDto> customers = customerService.findAll().stream()
+            .map(CustomerDto::new)
             .collect(Collectors.toList());
         return ResponseEntity.ok(customers);
     } 
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerForm> customer(@PathVariable("id") Long id) {
-        CustomerForm customer = new CustomerForm(customerService.findById(id));
+    public ResponseEntity<CustomerDto> customer(@PathVariable("id") Long id) {
+        CustomerDto customer = new CustomerDto(customerService.findById(id));
         return ResponseEntity.ok(customer);
     }
 
