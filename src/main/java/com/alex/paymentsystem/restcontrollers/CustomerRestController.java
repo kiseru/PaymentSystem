@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.alex.paymentsystem.forms.CustomerForm;
-import com.alex.paymentsystem.models.Customer;
 import com.alex.paymentsystem.services.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
