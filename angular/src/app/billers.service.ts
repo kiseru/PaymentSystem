@@ -28,4 +28,8 @@ export class BillersService {
   findOne(id: number): Observable<Biller> {
     return this.http.get<Biller>(`${this.billersUrl}/${id}`);
   }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.billersUrl}/${id}`);
+  }
 }

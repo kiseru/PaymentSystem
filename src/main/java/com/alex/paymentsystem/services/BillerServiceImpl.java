@@ -36,4 +36,9 @@ public class BillerServiceImpl implements BillerService {
 	public Biller update(Biller biller) {
 		return billerRepository.save(biller);
 	}
+
+	@Override
+	public void deleteById(Long id) {
+		billerRepository.deleteById(id);
+	}
 }

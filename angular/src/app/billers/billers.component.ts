@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Biller } from '../biller';
 import { BillersService } from '../billers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-billers',
@@ -13,7 +14,8 @@ export class BillersComponent implements OnInit {
 
   billers: Biller[];
 
-  constructor(private billersService: BillersService) { }
+  constructor(private billersService: BillersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getAllBillers();
@@ -29,7 +31,8 @@ export class BillersComponent implements OnInit {
   }
 
   delete(id: number) {
-    
+    this.billersService.delete(id)
+      .subscribe(() => this.router.navigate(["/billers"]));
+    this.billers = this.billers.filter(biller => biller.id != id);
   }
-
 }

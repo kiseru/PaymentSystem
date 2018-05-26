@@ -40,4 +40,9 @@ public class BillerRestController {
         Biller biller = billerService.findOneById(id);
         return ResponseEntity.ok(biller);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteBiller(@PathVariable("id") Long id) {
+        billerService.deleteById(id);
+    }
 }

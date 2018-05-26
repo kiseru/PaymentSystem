@@ -12,4 +12,5 @@ public interface BillerService {
     Biller findOneById(Long id);
     Biller save(BillerForm billerForm);
 	Biller update(Biller biller);
+	void deleteById(Long id);
 }
