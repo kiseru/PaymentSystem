@@ -9,6 +9,6 @@ public interface BillerService {
     List<Biller> findAll();
     Biller findById(Long id);
     Biller save(BillerForm billerForm);
-	Biller update(Biller biller);
+	Biller update(BillerForm billerForm);
 	void deleteById(Long id);
 }

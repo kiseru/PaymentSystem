@@ -33,8 +33,8 @@ public class BillerServiceImpl implements BillerService {
 	}
 
 	@Override
-	public Biller update(Biller biller) {
-		return billerRepository.save(biller);
+	public Biller update(BillerForm billerForm) {
+		return billerRepository.save(BillerForm.from(billerForm));
 	}
 
 	@Override

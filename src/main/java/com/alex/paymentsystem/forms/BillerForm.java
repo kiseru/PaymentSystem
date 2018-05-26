@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class BillerForm {
 
+    private Long id;
+
     private String companyName;
 
     public static Biller from(BillerForm billerForm) {

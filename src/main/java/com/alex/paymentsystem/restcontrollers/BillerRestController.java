@@ -1,10 +1,12 @@
 package com.alex.paymentsystem.restcontrollers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.alex.paymentsystem.forms.BillerForm;
 import com.alex.paymentsystem.models.Biller;
 import com.alex.paymentsystem.services.BillerService;
+import com.alex.paymentsystem.transfer.BillerDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,10 @@ public class BillerRestController {
     private BillerService billerService;
 
     @GetMapping
-    public ResponseEntity<List<Biller>> billers() {
-        List<Biller> billers = billerService.findAll();
+    public ResponseEntity<List<BillerDto>> billers() {
+        List<BillerDto> billers = billerService.findAll().stream()
+            .map(BillerDto::new)
+            .collect(Collectors.toList());
         return ResponseEntity.ok(billers);
     }
 
@@ -29,13 +33,13 @@ public class BillerRestController {
     }
 
     @PutMapping("/{id}")
-    public void updateBiller(@RequestBody Biller biller, @PathVariable("id") Long id) {
-        billerService.update(biller);
+    public void updateBiller(@RequestBody BillerForm billerForm, @PathVariable("id") Long id) {
+        billerService.update(billerForm);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Biller> biller(@PathVariable("id") Long id) {
-        Biller biller = billerService.findById(id);
+    public ResponseEntity<BillerDto> biller(@PathVariable("id") Long id) {
+        BillerDto biller = new BillerDto(billerService.findById(id));
         return ResponseEntity.ok(biller);
     }
 
