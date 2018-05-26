@@ -13,19 +13,26 @@ import lombok.NoArgsConstructor;
 @Data
 public class CustomerForm {
 
+    private Long id;
+
     private String firstName;
 
     private String lastName;
 
     private String address;
-    
+
     private String dateOfBirth;
 
-    private static Customer from(CustomerForm customerForm) {
+    public CustomerForm(Customer customer) {
+        this(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getDateOfBirth().toString());
+    }
+
+    public static Customer from(CustomerForm customerForm) {
         return Customer.builder()
+            .id(customerForm.getId())
             .firstName(customerForm.getFirstName())
             .lastName(customerForm.getLastName())
-            .address(customerForm.getLastName())
+            .address(customerForm.getAddress())
             .dateOfBirth(Date.valueOf(customerForm.getDateOfBirth()))
             .build();
     }

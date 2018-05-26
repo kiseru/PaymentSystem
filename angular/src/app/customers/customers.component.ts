@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../customer';
+import { CustomersService } from '../customers.service';
+import { Router } from '@angular/router';
+import { CustomerForm } from '../customer-form';
 
 @Component({
   selector: 'app-customers',
@@ -10,28 +13,29 @@ export class CustomersComponent implements OnInit {
 
   @Input() searchString: string;
 
-  customers: Customer[];
+  customers: CustomerForm[];
 
-  constructor() {
-    this.customers = [
-      { id: 1, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 2, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 3, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 4, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 5, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 6, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" },
-      { id: 7, firstName: "Sherlok", lastName: "Holms", dateOfBirth: "23.06.1973", address: "Baker St 221B" }
-    ];
+  constructor(private customersService: CustomersService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.getAllCustomers();
   }
 
   onChangeSearchString() {
     console.log(this.searchString);
   }
 
+  getAllCustomers() {
+    this.customersService.findAll()
+      .subscribe(customers => this.customers = customers);
+  }
+
   delete(id: number) {
+    this.customersService.delete(id)
+      .subscribe(() => this.router.navigate(["/customers"]));
+    this.customers = this.customers.filter(customer => customer.id != id);
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerForm } from '../customer-form';
+import { CustomersService } from '../customers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-new',
@@ -16,7 +18,8 @@ export class CustomerNewComponent implements OnInit {
   isAddressValid: boolean;
   isDateOfBirthValid: boolean;
 
-  constructor() { }
+  constructor(private customersService: CustomersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.customerForm = new CustomerForm();
@@ -49,7 +52,8 @@ export class CustomerNewComponent implements OnInit {
   }
 
   createCustomer() {
-    console.log(this.customerForm);
+    this.customersService.create(this.customerForm)
+      .subscribe(() => this.router.navigate(["/customers"]));
   }
 
 }
