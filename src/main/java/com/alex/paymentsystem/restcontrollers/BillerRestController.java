@@ -3,6 +3,8 @@ package com.alex.paymentsystem.restcontrollers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.alex.paymentsystem.forms.BillerForm;
 import com.alex.paymentsystem.models.Biller;
 import com.alex.paymentsystem.services.BillerService;
@@ -10,6 +12,7 @@ import com.alex.paymentsystem.transfer.BillerDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,12 +31,12 @@ public class BillerRestController {
     }
 
     @PostMapping
-    public void createBiller(@RequestBody BillerForm billerForm) {
+    public void createBiller(@RequestBody @Valid BillerForm billerForm, BindingResult bindingResult) {
         billerService.save(billerForm);
     }
 
     @PutMapping("/{id}")
-    public void updateBiller(@RequestBody BillerForm billerForm, @PathVariable("id") Long id) {
+    public void updateBiller(@RequestBody @Valid BillerForm billerForm, @PathVariable("id") Long id, BindingResult bindingResult) {
         billerService.update(billerForm);
     }
 

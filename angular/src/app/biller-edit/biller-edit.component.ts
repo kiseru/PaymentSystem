@@ -3,6 +3,7 @@ import { Biller } from '../biller';
 import { BillersService } from '../billers.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { BillerForm } from '../biller-form';
 
 @Component({
   selector: 'app-biller-edit',
@@ -11,7 +12,9 @@ import { Location } from '@angular/common';
 })
 export class BillerEditComponent implements OnInit {
 
-  @Input() biller: Biller;
+  @Input() biller: BillerForm;
+
+  isCompanyNameValid: boolean = true;  
 
   constructor(private billersService: BillersService,
               private router: Router,
@@ -22,6 +25,8 @@ export class BillerEditComponent implements OnInit {
   }
 
   update() {
+    this.validateCompanyName();
+    if (!this.isCompanyNameValid) return;
     this.billersService.update(this.biller)
       .subscribe(() => this.router.navigate(["/billers"]));
   }
@@ -30,5 +35,10 @@ export class BillerEditComponent implements OnInit {
     let id = +this.activatedRoute.snapshot.paramMap.get("id");
     this.billersService.findOne(id)
       .subscribe(biller => this.biller = biller);
+  }
+
+  validateCompanyName() {
+    let regex = /^[A-Za-z ]/;
+    this.isCompanyNameValid = this.biller.companyName.search(regex) !== -1;
   }
 }

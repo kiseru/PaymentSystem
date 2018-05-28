@@ -3,12 +3,16 @@ package com.alex.paymentsystem.restcontrollers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.naming.Binding;
+import javax.validation.Valid;
+
 import com.alex.paymentsystem.forms.CustomerForm;
 import com.alex.paymentsystem.services.CustomerService;
 import com.alex.paymentsystem.transfer.CustomerDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,13 +44,12 @@ public class CustomerRestController {
     }
 
     @PostMapping
-    public void createCustomer(@RequestBody CustomerForm customerForm) {
+    public void createCustomer(@RequestBody @Valid CustomerForm customerForm, BindingResult bindingResult) {
         customerService.save(customerForm);
     }
 
     @PutMapping("/{id}")
-    public void updateCustomer(@RequestBody CustomerForm customerForm, @PathVariable("id") Long id) {
-        customerForm.setId(id);
+    public void updateCustomer(@RequestBody @Valid CustomerForm customerForm, @PathVariable("id") Long id, BindingResult bindingResult) {
         customerService.save(customerForm);
     }
 

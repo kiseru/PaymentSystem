@@ -17,8 +17,8 @@ export class BillersService {
     return this.http.post<Biller>(this.billersUrl, billerForm);
   }
 
-  update(biller: Biller): Observable<Biller> {
-    return this.http.put<Biller>(`${this.billersUrl}/${biller.id}`, biller);
+  update(billerForm: BillerForm): Observable<Biller> {
+    return this.http.put<Biller>(`${this.billersUrl}/${billerForm.id}`, billerForm);
   }
 
   findAll(): Observable<Biller[]> {

@@ -5,12 +5,14 @@
 <div class="my-3 p-3 bg-white rouded box-shadow">
   <div class="border-bottom border-gray pb-2 mb-0 d-flex justify-content-between">
     <div class="d-flex">
-      <select class="mx-1 custom-select">
-        <option>Some Cool Customer</option>
+      <select class="mx-1 custom-select" [(ngModel)]="customerId" (change)="onChangeSelector()">
+        <option value="0">All</option>
+        <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.firstName }} {{ customer.lastName }}</option>
       </select>
 
-      <select class="mx-1 custom-select">
-        <option>Some Cool Customer</option>
+      <select class="mx-1 custom-select" [(ngModel)]="billerId" (change)="onChangeSelector()">
+        <option value="0">All</option>        
+        <option *ngFor="let biller of billers" [value]="biller.id">{{ biller.companyName }}</option>
       </select>
     </div>
     <div>
@@ -28,12 +30,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>22.05.15 12:34:45</td>
-        <td>Some Cool Customer</td>
-        <td>Another Nice Biller</td>
-        <td>12341234124</td>
-        <td>$54.66</td>
+      <tr *ngFor="let payment of filteredPayments">
+        <td>{{ payment.date }}</td>
+        <td>{{ payment.customer.firstName }} {{ payment.customer.lastName }}</td>
+        <td>{{ payment.biller.companyName }}</td>
+        <td>{{ payment.account }}</td>
+        <td>${{ payment.amount }}</td>
       </tr>
     </tbody>
   </table>

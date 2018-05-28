@@ -6,6 +6,7 @@
   <div class="form-group">
     <label for="first-name-input">Company Name</label>
     <input type="text" id="first-name-input" class="form-control" [(ngModel)]="biller.companyName">
+    <div class="alert alert-danger mt-2" *ngIf="!isCompanyNameValid">Company name must not be blank and contains only A-z and a-z</div>    
   </div>
   
 

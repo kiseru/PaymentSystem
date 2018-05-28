@@ -4,4 +4,8 @@ export class CustomerForm {
     lastName: string;
     address: string;
     dateOfBirth: string;
+
+    getFullName(): string {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }

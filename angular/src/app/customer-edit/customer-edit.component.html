@@ -6,10 +6,12 @@
   <div class="form-group">
     <label for="first-name-input">First Name</label>
     <input type="text" id="first-name-input" class="form-control" [(ngModel)]="customerForm.firstName">
+    <div class="alert alert-danger mt-2" *ngIf="!isFirstNameValid">First name must not be blank and consist of letters</div>    
   </div>
   <div class="form-group">
     <label for="last-name-input">Last Name</label>
     <input type="text" id="last-name-input" class="form-control" [(ngModel)]="customerForm.lastName">
+    <div class="alert alert-danger mt-2" *ngIf="!isLastNameValid">Last name must not be blank and consist of letters</div>        
   </div>
   <div class="form-group">
     <label for="address-input">Address</label>
@@ -18,6 +20,7 @@
   <div class="form-group">
     <label for="date-of-birth-input">Date of Birth</label>
     <input type="date" id="date-of-birth-input" class="form-control" [(ngModel)]="customerForm.dateOfBirth">
+    <div class="alert alert-danger mt-2" *ngIf="!isDateOfBirthValid">There is no such date</div>        
   </div>  
 
   <div class="text-center mt-4">

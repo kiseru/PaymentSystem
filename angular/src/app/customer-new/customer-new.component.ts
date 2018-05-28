@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Customer } from '../customer';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerForm } from '../customer-form';
 import { CustomersService } from '../customers.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-new',
@@ -15,7 +14,6 @@ export class CustomerNewComponent implements OnInit {
 
   isFirstNameValid: boolean;
   isLastNameValid: boolean;
-  isAddressValid: boolean;
   isDateOfBirthValid: boolean;
 
   constructor(private customersService: CustomersService,
@@ -32,28 +30,33 @@ export class CustomerNewComponent implements OnInit {
     this.validateFirstName();
     this.validateLastName();
     this.validateDateOfBirth();
-    this.validateAddress();
   }
 
   private validateFirstName() {
-    this.isFirstNameValid = this.customerForm.firstName !== "";
+    let regex = /^[A-Z][a-z]+$/;
+    this.isFirstNameValid = this.customerForm.firstName.search(regex) !== -1;
   }
 
   private validateLastName() {
-    this.isLastNameValid = this.customerForm.lastName !== "";
+    let regex = /^[A-Z][a-z]+$/;    
+    this.isLastNameValid = this.customerForm.lastName.search(regex) !== -1;
   }
 
   private validateDateOfBirth() {
-    this.isDateOfBirthValid = this.customerForm.dateOfBirth !== "";
-  }
+    let currentYear = new Date(Date.now()).getTime();    
+    let inputYear = new Date(this.customerForm.dateOfBirth).getTime();
+    this.isDateOfBirthValid = inputYear < currentYear;
+    if (!this.isDateOfBirthValid) return;
 
-  private validateAddress() {
-    this.isAddressValid = this.customerForm.address != "";
+    let regex = /^([0-9]{4}-(0[1-9]?|1[0-2])-(0[1-9]|1[0-9]|2[0-8]))|([0-9]{4}-(0[13-9]|1[0-2])-(29|30))|([0-9]{4}-(0[13578]|1[02])-31)|(([0-9]{2}(0[48]|[13579][26]|[2468][048])|([13579][26]|[2468][048])00)-02-29)$/;
+    this.isDateOfBirthValid = this.customerForm.lastName.search(regex) !== -1;
+    if (!this.isDateOfBirthValid) return;
   }
 
   createCustomer() {
+    this.validate();
+    if (!this.isFirstNameValid || !this.isLastNameValid || !this.isDateOfBirthValid) return;
     this.customersService.create(this.customerForm)
       .subscribe(() => this.router.navigate(["/customers"]));
   }
-
 }
